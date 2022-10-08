@@ -1,0 +1,43 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    height: 60px;
+    background-color: aqua;
+}
+
+.nav .containerLinks {
+    position: absolute;
+    top: 60px;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition:all ease .3s;
+}
+
+.nav .hideNav {
+    right: -100%;
+}
+
+.nav .showNav {
+    right: 0;
+}
+
+.nav .containerLinks li {
+    padding: 15px 0;
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    background-color: #e10000;
+}
+
+.iconBar {
+    padding: 12px;
+    font-size: 2rem;
+    height: fit-content;
+}
+
+.iconBar:hover {
+    cursor: pointer;
+}
