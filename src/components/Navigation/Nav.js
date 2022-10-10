@@ -2,41 +2,44 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import styles from './Nav.module.css';
 import uuid from 'react-uuid';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
-function NavLinks({links, displayMenu}) {
+function NavLinks({links}) {
+    const [displayMenu, setDisplayMenu] = useState(false);
+    
     const slideMenu = displayMenu ? {right: "0"} : {right: "-100%"} 
+    let linkList = links.map(link => <li key={uuid()}>{ link }</li> )
 
-    let list = links.map(link => <li key={uuid()}>{link}</li>)
-    console.log(slideMenu)
     return (
-        <ul className={styles.containerLinks} style={slideMenu}>
-            {list}
-        </ul>
+        <Fragment>
+            <div className={styles.verticalNavWrapper}>
+                <span onClick={() => setDisplayMenu(!displayMenu) } className={styles.iconBar}>
+                    <FontAwesomeIcon icon={faBars} />
+                </span>
+            </div>
+            <ul className={styles.containerLinks} style={slideMenu}>
+                {linkList}
+            </ul>
+        </Fragment>
     )
 }
 
 export default function Nav() {
-    const [displayMenu, setDisplayMenu] = useState(false);
 
     const links = [
         "About", 
-        "Experience", 
+        "Skills",
+        "Career", 
         "Projects",
         "Resume",
         "Contact"
     ]
 
-    function handleDisplayMenu() {
-        setDisplayMenu(!displayMenu);
-    }
-
     return (
         <nav className={styles.nav}>
-            <span onClick={ () => handleDisplayMenu() } className={styles.iconBar}>
-                <FontAwesomeIcon icon={faBars} />
-            </span>
-            <NavLinks links={links} displayMenu={displayMenu}/>
+            <div className={styles.logoMenu}><h2>Nusubaliev</h2></div>
+            <NavLinks links={links} />
         </nav>
     )
 }
+
